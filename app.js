@@ -4,9 +4,14 @@ import analyticsRoutes from './routes/analytics.js';
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+// Allow all origins
+app.use(cors({
+  origin: '*',           // Allow any origin
+  methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
 
+app.use(express.json());
 app.use('/analytics', analyticsRoutes);
 
 export default app;
